@@ -92,7 +92,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/08/10-8-ajax/index.html">
 <meta property="og:site_name" content="罗炜的个人博客">
 <meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738//第一步 创建XMLHttpRequestvar XHR=null;  if (window.XMLHttpRequest) &amp;#123;      // 非IE内核 code for IE7+, Firefox, Chrome, Opera, Safari">
-<meta property="og:updated_time" content="2016-10-08T14:26:21.642Z">
+<meta property="og:updated_time" content="2016-10-08T14:42:05.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="原生js实现AJAX">
 <meta name="twitter:description" content="1234567891011121314151617181920212223242526272829303132333435363738//第一步 创建XMLHttpRequestvar XHR=null;  if (window.XMLHttpRequest) &amp;#123;      // 非IE内核 code for IE7+, Firefox, Chrome, Opera, Safari">
@@ -328,6 +328,7 @@
 <h4 id="1、创建"><a href="#1、创建" class="headerlink" title="1、创建"></a>1、创建</h4><p>1.1、IE7及其以上版本中支持原生的 XHR 对象，因此可以直接用： var oAjax = new XMLHttpRequest();</p>
 <p>1.2、IE6及其之前的版本中，XHR对象是通过MSXML库中的一个ActiveX对象实现的。有的书中细化了IE中此类对象的三种不同版本，即MSXML2.XMLHttp、MSXML2.XMLHttp.3.0 和 MSXML2.XMLHttp.6.0；个人感觉太麻烦，可以直接使用下面的语句创建： var oAjax=new ActiveXObject(’Microsoft.XMLHTTP’);</p>
 <hr>
+<a id="more"></a>
 <h4 id="2、连接和发送"><a href="#2、连接和发送" class="headerlink" title="2、连接和发送"></a>2、连接和发送</h4><p>2.1、open()函数的三个参数：请求方式、请求地址、是否异步请求(同步请求的情况极少，至今还没用到过)；</p>
 <p>2.2、GET 请求方式是通过URL参数将数据提交到服务器的，POST则是通过将数据作为 send 的参数提交到服务器；</p>
 <p>2.3、GET使用于传送简单数据，一般1kb以下，一般以URL参数的格式附加在请求行中的资源路径后面的方式传送。另外最重要的一点是，它会被客户端的浏览器缓存起来那么，别人就可以从浏览器的历史记录中，读取到此客户的数据，比如帐号和密码等。因此，在某些情况下，get方法会带来严重的安全性问题。<br>POST方法：浏览器把各表单字段元素及其数据作为HTTP消息的实体内容发送给Web服务器，而不是作为URL地址的参数进行传递，使用POST方式传递的数据量要比使用GET方式传送的数据量大的多。<br>　　总之，GET方式传送数据量小，处理效率高，安全性低，会被缓存，而POST反之。 使用get方式需要注意。<br>GET方法能完成大部分需求。</p>
