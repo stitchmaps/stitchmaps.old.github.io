@@ -234,6 +234,139 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/27/10-27-卡牌游戏/" itemprop="url">
+                  简单的发牌游戏
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-27T09:45:53+08:00" content="2016-10-27">
+              2016-10-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/编程题/" itemprop="url" rel="index">
+                    <span itemprop="name">编程题</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/27/10-27-卡牌游戏/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/27/10-27-卡牌游戏/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>用面向对象思想，写一个锄大地扑克牌程序。<br>一副新的扑克牌，除去大小鬼剩下52张牌（这副牌包括梅花、方块、红桃和黑桃4种花色，每种花色又有13种牌，分别是A、2、3、4、5、6、7、8、9、10、J、Q、K）。发牌者把这52张牌随机发给4个玩家，直到把所有牌发完。按上面要求写一个发牌程序，要求把4个玩家手里的牌都打印出来。</p>
+<p>要求：<br>用你最熟悉的计算机语言实现上面程序，并画出UML图。（程序必须完整，可以直接运行）</p>
+<p>目的：<br>1）主要考察面向对象的设计能力。<br>2）UML知识</p>
+</blockquote>
+<p>这是一个最近做的编程题，题目主要是考察面向对象的编程思想，题目本身比较简单，可能考官也是主要为了考察在编程中体现的面向对象思想。  </p>
+<hr>
+<p>首先先从现实分析这个卡牌游戏必须有的角色：人，卡牌，一张桌子四张凳子，其中输的一个负责发牌洗牌，妥妥的锄大地游戏就可以开始了。但是从编程角度来看，我们必须把现实中的卡牌游戏抽象一点，更“程序”一点，一个卡牌游戏对象，分成了玩家对象，卡牌对象，以及一个抽象的洗发牌对象。分析到这一步之后，编程的思路就已经清晰了，程序本身也比较简单容易实现。</p>
+<p>   程序的四个类：Card，Player，Dealer，PokerGame，逐一实现。</p>
+<p>   首先是Card实现，很明显必须有花色和数字，而卡牌所拥有的的花色和大小的范围都是确定的，所以我选择用静态数组存储花色而大小.同时为了方便打印，重写了toString方法。以下是代码实现：  </p>
+   <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Card</span> </span>&#123;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String[] Numbers = &#123;<span class="string">"A"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"4"</span>, <span class="string">"5"</span>,</div><div class="line">			<span class="string">"6"</span>, <span class="string">"7"</span>, <span class="string">"8"</span>, <span class="string">"9"</span>, <span class="string">"10"</span>, <span class="string">"J"</span>, <span class="string">"Q"</span>, <span class="string">"K"</span>&#125;;</div><div class="line">	<span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String[] SuitTypes = &#123;<span class="string">"Diamond"</span>, <span class="string">"Heart"</span>, <span class="string">"Club"</span>, <span class="string">"Spade"</span>&#125;;</div><div class="line">	<span class="keyword">private</span> String number;</div><div class="line">	<span class="keyword">private</span> String suit;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Card</span><span class="params">(String number, String suit)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.number = number;</div><div class="line">		<span class="keyword">this</span>.suit = suit;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getNumber</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> number;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setNumber</span><span class="params">(String number)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.number = number;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">getSuit</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> suit;</div><div class="line">	&#125;</div><div class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSuit</span><span class="params">(String suit)</span> </span>&#123;</div><div class="line">		<span class="keyword">this</span>.suit = suit;</div><div class="line">	&#125;</div><div class="line">	<span class="meta">@Override</span></div><div class="line">	<span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</div><div class="line">		<span class="keyword">return</span> suit + <span class="string">" "</span> + number;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>   其次是Player类的编写，比较特别的是采用了ArrayList存储玩家手中的牌，并且向上实现了list接口，这样面向接口的编程，有更好的扩展性。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/27/10-27-卡牌游戏/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/08/10-8-ajax/" itemprop="url">
                   原生js实现AJAX
                 </a>
@@ -772,7 +905,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">4</span>
+              <span class="site-state-item-count">5</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -780,7 +913,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">2</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -789,7 +922,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">4</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
